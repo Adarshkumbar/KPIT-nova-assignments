@@ -1,0 +1,35 @@
+#Problem statement....
+
+Implement the class Complex with data members for real and imaginary parts of complex number.
+Add default constructor, parameterized constructor, accept and display functions inside the class 
+Complex.
+Default Constructor – Will initialize real and img to values 0
+Parameterized Constructor – Will initialize real and img to values passed inside constructor
+Accept function – Will accept the Complex number from user
+Display function – Will display the Complex number into “a+bi” format
+Overload operators +, - , ++ (pre and post increment), == in the above class Complex.
+Operator+ will perform addition of two Complex objects.
+Addition of two complex objects is nothing but addition of their corresponding real 
+and imaginary parts.
+Operator- will perform subtraction of two Complex objects.
+Subtraction of two complex objects is nothing but subtraction of their
+corresponding real and imaginary parts.
+++(pre and post) – will add 1 to the real and img parts of Complex number
+== operator will compare two complex objects are same. i.e. their corresponding real and 
+imaginary parts are same.
+Declaration of class Complex is given below for your reference. You need to complete its definition.
+class Complex
+{
+int real;
+int img;
+Public:
+Complex();
+Complex(int, int);
+void Accept();
+void Display();
+Complex operator+(Complex &);
+Complex operator-(Complex &);
+Complex operator++();
+Complex operator++(int);
+bool operator==(Complex&);
+};
