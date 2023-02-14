@@ -1,0 +1,19 @@
+Write a class Account with data members for - Account Number (integer), name (char array), 
+balance of account (double).
+Implement below functions for class Account a. Default constructor
+b. Parameterized constructor taking account number, name and balance as parameter list
+c. Function to accept details of Account
+d. Function to display details of Account
+e. Function to deposit an amount into the account
+f. Function to withdraw an amount from the account
+g. Getter and Setter functions for each of the data member
+h. Static function to search an account by “account number” into an array of account
+objects passed to the function
+i. Static function to get the highest balance amount into an array of account objects
+passed to the function
+j. Static function to get the lowest balance amount into an array of account objects passed 
+to the function
+Please refer file “bitmap.h” to see the declaration of class Account.
+Please note that, you are required to edit the code in file “bitmap.cpp” to complete definitions of 
+functions for above mentioned requirements.
+You are not required to implement function “main”. 
