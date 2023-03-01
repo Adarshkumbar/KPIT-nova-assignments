@@ -1,6 +1,6 @@
 #include<iostream>
 #include<cstring>
-#include"bitmap.h"
+// #include"bitmap.h"
 using namespace std;
 
 class Account
@@ -29,8 +29,7 @@ public:
 Account::Account()
 {
 	//This is Default Constructor
-	accno=0,name="",balance=0.0;
-}
+ }
 
 Account::Account(int acc, const char *n, double bal)
 {
@@ -38,10 +37,9 @@ Account::Account(int acc, const char *n, double bal)
 }
 void Account::accept()
 {
-
+	cout<<"Enter Account Number,Name And Balance respectively:";
+	cin>>accno>>name>>balance;
 }
-
-
 void Account::display()
 {
 	cout<<"Account number:"<<accno<<"\n"<<"Name:"<<name<<"\n"<<"Balance:"<<balance;
@@ -91,26 +89,56 @@ bool Account::searchAccountById(Account *accounts, int size, int id)
 {
 	bool status=false;
 	
-	// code here
-	
+	for(int i=0;i<size;i++)
+	{
+		if(id==accounts[i].getAccno())
+		{
+			status=true;
+			break;
+		}
+	}
 	return status;
 }
 
 double Account::getHighestBalance(Account *accounts, int size)
 {
-	int i, highestBal;
-	
-	// code here
-	
+	int i=0, highestBal=int(accounts[0].getBalance());
+	for(i=0;i<size;i++)
+	{
+		if(highestBal<accounts[i].balance)
+			highestBal=accounts[i].balance;
+	}
 	return highestBal;
 }
 
-
 double Account::getLowestBalance(Account *accounts, int size)
 {
-	int i, lowestBal;
-	
-	// code here
-		
+	int i, lowestBal=int(accounts[0].getBalance());
+	for(i=0;i<size;i++)
+	{
+		if(lowestBal<accounts[i].balance)
+			lowestBal=accounts[i].balance;
+	}	
 	return lowestBal;
+}
+int main()
+{
+	Account a1;
+		a1.setBalance(20000);
+		a1.deposite(5000);
+		cout<<"Balane is :"<<a1.getBalance();
+		cout<<"\n";
+		a1.accept();
+		a1.display();
+	int i,size=5;
+		Account a[5];
+		for(i=0; i<5; i++)
+		{
+			a[i].setAccno(i);
+			a[i].setBalance((i+1)*1000);
+		}
+		int bal=Account::getHighestBalance(a,5);
+		cout<<"\nHigest balance is :"<<bal;
+	cout<<"\nFound?:"<<a[0].searchAccountById(a,5,108);
+	return 0;
 }
