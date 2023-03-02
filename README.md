@@ -1,2 +1,0 @@
-# KPIT-nova-assignments
-
