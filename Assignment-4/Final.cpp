@@ -1,105 +1,88 @@
+#include <cstdlib>
 #include "bitmap.h"
 
-/*
-    Parameterized Constructor for Employee
-*/
+using namespace std;
 
-Employee::Employee(std::string id, std::string name, float salary, int plCount, int plClaimed){
-  
-}
+Employee::Employee(string id, string name, float salary, int plCount, int plClaimed) :
+    EmployeeId(id), EmployeeName(name), EmployeeSalary(salary), PaidLeavesCount(plCount), 
+    PaidLeavesClaimed(plClaimed) 
+{}
 
-/*
-  The function accepts a string value and sets it as the EmployeeName
-*/
 
-void Employee::ChangeName(std::string newName){
-    
+void Employee::ChangeName(string newName)
+{
+    if (!newName.empty() && newName != EmployeeName)
+        EmployeeName = newName;
 }
 
 /*
     The function calculates reimbursement in following steps
-
     1) Divide EmployeeSalary by 30 to get daily salary for Employee
     2) Take difference between Paid leaves allocated and Paid leaves Claimed
     3) Multiply daily salary of employee with the difference from step 2
 */
 
-int Employee::CalculateLeavesReimbursement(){
-   
-}
-
-/*
-    This function returns the count of paid leaves allocated to an employee
-*/
-
-int Employee::GetPaidLeavesCount(){
-   
-}
-
-/*
-    This function returns the count of paid leaves claimed by an employee
-*/
-
-int Employee::GetClaimedPaidLeavesCount(){
-  
-}
-
-/*
-    This function returns the name of the employee
-*/
-std::string Employee::GetEmployeeName(){
-   
-}
-
-/*
-    This function returns the ID of the employee
-*/
-
-std::string Employee::GetEmployeeId(){
-   
-}
-
-
-/*
-    This function returns the salary of the employee
-*/
-
-float Employee::GetEmployeeSalary(){
-  
-}
-
-
-/*
-    This function returns the department of the Manager
-*/
-
-std::string Manager::GetManagerDepartment(){
-   
-}
-
-/*
-    This function returns the count of projects completed under the Manager
-*/
-
-int Manager::GetProjectsCompletedCount(){
-    
-}
-
-/*
-    Parameterized Constructor for Manager
-*/
-    
-Manager::Manager (std::string id, std::string name, float salary, int plCount, 
-        int plClaimed, int projects,std::string department) : Employee (id,name,salary,plCount,plClaimed)
+int Employee::CalculateLeavesReimbursement()
 {
-                      
+    float dailySalary = EmployeeSalary / 30.0f;
+    int diff = abs(PaidLeavesCount - PaidLeavesClaimed);
+    return static_cast<int>(dailySalary) * diff;
 }
+
+
+int Employee::GetPaidLeavesCount()
+{
+    return PaidLeavesCount;
+}
+
+
+int Employee::GetClaimedPaidLeavesCount()
+{
+    return PaidLeavesClaimed;
+}
+
+
+string Employee::GetEmployeeName()
+{
+    return EmployeeName;
+}
+
+
+string Employee::GetEmployeeId()
+{
+    return EmployeeId;
+}
+
+
+float Employee::GetEmployeeSalary()
+{
+    return EmployeeSalary;
+}
+
+
+string Manager::GetManagerDepartment()
+{
+    return ManagerDepartment;
+}
+
+
+int Manager::GetProjectsCompletedCount()
+{
+    return ProjectsCompleted;
+}
+
+    
+Manager::Manager (string id, string name, float salary, int plCount, 
+    int plClaimed, int projects, string department) : Employee(id, name, salary, plCount, plClaimed), 
+    ProjectsCompleted(projects), ManagerDepartment(department)
+{}
 
 /*
     Calculate the bonus as salary of Manager employee multiplied by projects completed under their supervison
     Type cast to integer as mentioned in the problem statement description
 */
 
-int Manager::CalculateBonus(){
-
+int Manager::CalculateBonus()
+{
+    return static_cast<int>(GetEmployeeSalary()) * ProjectsCompleted;
 }

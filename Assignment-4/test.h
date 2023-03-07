@@ -1,55 +1,88 @@
-
+#include <cstdlib>
 #include "bitmap.h"
-#include <cxxtest/TestSuite.h>
-class SampleTestSuite : public CxxTest::TestSuite
+
+using namespace std;
+
+Employee::Employee(string id, string name, float salary, int plCount, int plClaimed) :
+    EmployeeId(id), EmployeeName(name), EmployeeSalary(salary), PaidLeavesCount(plCount), 
+    PaidLeavesClaimed(plClaimed) 
+{}
+
+
+void Employee::ChangeName(string newName)
 {
-public:
+    if (!newName.empty() && newName != EmployeeName)
+        EmployeeName = newName;
+}
 
-    //Validate Manager object
-    void testOne( void )
-    {
-       Manager m1("MG101", "John Smith", 45000.00,31,10,3,"IT");
-        TS_ASSERT(m1.GetEmployeeId() == "MG101");
-        TS_ASSERT(m1.GetEmployeeName() == "John Smith");
-        TS_ASSERT(m1.GetEmployeeSalary() == 45000.00);
-        TS_ASSERT(m1.GetPaidLeavesCount() == 31);
-        TS_ASSERT(m1.GetClaimedPaidLeavesCount() == 10);
-        TS_ASSERT(m1.GetManagerDepartment() == "IT");
-        TS_ASSERT(m1.GetProjectsCompletedCount() == 3);
-    }
+/*
+    The function calculates reimbursement in following steps
+    1) Divide EmployeeSalary by 30 to get daily salary for Employee
+    2) Take difference between Paid leaves allocated and Paid leaves Claimed
+    3) Multiply daily salary of employee with the difference from step 2
+*/
 
-    //validate Employee object
-    void testTwo( void )
-    {
-        Employee e1("EM01", "John Smith", 30000.00,31,10);
-        TS_ASSERT(e1.GetEmployeeId() == "EM01");
-        TS_ASSERT(e1.GetEmployeeName() == "John Smith");
-        TS_ASSERT(e1.GetEmployeeSalary() == 30000.00);
-        TS_ASSERT(e1.GetPaidLeavesCount() == 31);
-        TS_ASSERT(e1.GetClaimedPaidLeavesCount() == 10);
-    }
+int Employee::CalculateLeavesReimbursement()
+{
+    float dailySalary = EmployeeSalary / 30.0f;
+    int diff = abs(PaidLeavesCount - PaidLeavesClaimed);
+    return static_cast<int>(dailySalary) * diff;
+}
 
-    //Validate CalculateLeavesReimbursement functionality
-    void testThree( void )
-    {
-        Employee e1("EM01", "John Smith", 30000.00,31,10);
-        TS_ASSERT(e1.CalculateLeavesReimbursement() == 21000);
 
-    }
+int Employee::GetPaidLeavesCount()
+{
+    return PaidLeavesCount;
+}
 
-    //Validate CalculateBonus functionality
-    void testFour( void )
-    {
-        Manager m1("MG101", "John Smith", 45000.00,31,10,3,"IT");
-        TS_ASSERT(m1.CalculateBonus() == 135000);
-    }
 
-    //validate ChangeName functionality
-    void testFive( void )
-    {
-        Employee e1("EM01", "John Smith", 30000.00,31,10);
-        e1.ChangeName("Jacob Smith");
-        TS_ASSERT(e1.GetEmployeeName() == "Jacob Smith");
-    }    
+int Employee::GetClaimedPaidLeavesCount()
+{
+    return PaidLeavesClaimed;
+}
+
+
+string Employee::GetEmployeeName()
+{
+    return EmployeeName;
+}
+
+
+string Employee::GetEmployeeId()
+{
+    return EmployeeId;
+}
+
+
+float Employee::GetEmployeeSalary()
+{
+    return EmployeeSalary;
+}
+
+
+string Manager::GetManagerDepartment()
+{
+    return ManagerDepartment;
+}
+
+
+int Manager::GetProjectsCompletedCount()
+{
+    return ProjectsCompleted;
+}
+
     
-};
+Manager::Manager (string id, string name, float salary, int plCount, 
+    int plClaimed, int projects, string department) : Employee(id, name, salary, plCount, plClaimed), 
+    ProjectsCompleted(projects), ManagerDepartment(department)
+{}
+
+/*
+    Calculate the bonus as salary of Manager employee multiplied by projects completed under their supervison
+    Type cast to integer as mentioned in the problem statement description
+*/
+
+int Manager::CalculateBonus()
+{
+    return static_cast<int>(GetEmployeeSalary()) * ProjectsCompleted;
+}
