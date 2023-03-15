@@ -1,5 +1,4 @@
 #include "bitmap.h"
-
 Employee::Employee(string id, string name, float salary, int plCount, int plClaimed) : EmployeeId(id), EmployeeName(name), EmployeeSalary(salary), PaidLeavesCount(plCount),
                                                                                        PaidLeavesClaimed(plClaimed)
 {
@@ -78,17 +77,4 @@ Manager::Manager(string id, string name, float salary, int plCount,
 int Manager::CalculateBonus()
 {
     return static_cast<int>(GetEmployeeSalary()) * ProjectsCompleted;
-}
-int main()
-{
-    Manager m1("MG101", "John Smith", 45000.00, 31, 10, 3, "IT");
-    m1.GetEmployeeId() == "MG101";
-    m1.GetEmployeeName() == "John Smith";
-    m1.GetEmployeeSalary() == 45000.00;
-    m1.GetPaidLeavesCount() == 31;
-    m1.GetClaimedPaidLeavesCount() == 10;
-    m1.GetManagerDepartment() == "IT";
-    m1.GetProjectsCompletedCount() == 3;
-
-    m1.display();
 }
