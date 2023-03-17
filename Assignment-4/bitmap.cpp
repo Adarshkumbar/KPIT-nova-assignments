@@ -1,8 +1,11 @@
 #include "bitmap.h"
-Employee::Employee(string id, string name, float salary, int plCount, int plClaimed) : EmployeeId(id), EmployeeName(name), EmployeeSalary(salary), PaidLeavesCount(plCount),
-                                                                                       PaidLeavesClaimed(plClaimed)
-{
-}
+#include<cstring>
+using namespace std;
+
+Employee::Employee(string id, string name, float salary, int plCount, int plClaimed) : 
+    EmployeeId(id), EmployeeName(name), EmployeeSalary(salary), PaidLeavesCount(plCount),
+    PaidLeavesClaimed(plClaimed)
+{}
 
 void Employee::ChangeName(string newName)
 {
@@ -58,11 +61,6 @@ int Manager::GetProjectsCompletedCount()
 {
     return ProjectsCompleted;
 }
-void Employee::display()
-{
-    cout << "\nID" << EmployeeId << "\nNAME:" << EmployeeName << "\nSalary" << EmployeeName << "\nPaid leaves count: " << PaidLeavesCount << "\nPaid leaves Claimed: " << PaidLeavesClaimed << endl;
-}
-
 Manager::Manager(string id, string name, float salary, int plCount,
                  int plClaimed, int projects, string department) : Employee(id, name, salary, plCount, plClaimed),
                                                                    ProjectsCompleted(projects), ManagerDepartment(department)

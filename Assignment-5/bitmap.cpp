@@ -6,9 +6,28 @@
 
 
 char Student::CalculateGrade(){
-
-   
-  
+    if(TotalMarks==-1){
+        return '-';
+    }
+    else if(TotalMarks>100)
+    {
+        return '#';
+    }
+    else if(TotalMarks>=85 && TotalMarks<=100)
+    {
+        return 'O';
+    }
+    else if(TotalMarks>=61 && TotalMarks<=84)
+    {
+        return 'A';
+    }
+     else if(TotalMarks>=40 && TotalMarks<=60)
+    {
+        return 'A';
+    } 
+    else{
+        return 'F';
+    }
 }
 
 
@@ -17,7 +36,7 @@ char Student::CalculateGrade(){
 */
 
 std::string Student::GetStudentName(){
-  
+    return StudentName;
 }
 
 
@@ -26,7 +45,7 @@ std::string Student::GetStudentName(){
 */
 
 std::string Student::GetStudentId(){
-   
+    return StudentId;
 }
 
 
@@ -36,8 +55,10 @@ std::string Student::GetStudentId(){
 */
 
 EngineeringStudent::EngineeringStudent(std::string name, std::string id,int thMarks, int prMarks){
-
- 
+    StudentName=name;
+    StudentId=id;
+    PractialMarks=prMarks;
+    TheoryMarks=thMarks;
 }
 
 /*
@@ -46,7 +67,7 @@ EngineeringStudent::EngineeringStudent(std::string name, std::string id,int thMa
 
 
 void EngineeringStudent::CalculateMarks(){
- 
+    TotalMarks=((PractialMarks+TheoryMarks)/2);
 }
 
 /*
@@ -54,7 +75,7 @@ void EngineeringStudent::CalculateMarks(){
 */
 
 int EngineeringStudent::GetPracticalMarks(){
-   
+    return PractialMarks; 
 }
 
 
@@ -62,8 +83,8 @@ int EngineeringStudent::GetPracticalMarks(){
     Method to return Theory marks of the EngineeringStudent
 */
 
-char EngineeringStudent::GetTheoryMarks(){
-   
+int EngineeringStudent::GetTheoryMarks(){
+   return TheoryMarks;
 }
 
 
@@ -72,7 +93,7 @@ char EngineeringStudent::GetTheoryMarks(){
 */
 
 int EngineeringStudent::GetTotalMarks(){
-    
+    return TotalMarks;
 }
 
 
@@ -81,8 +102,10 @@ int EngineeringStudent::GetTotalMarks(){
 */
 
 ArchitectureStudent::ArchitectureStudent(std::string name, std::string id,int dgMarks, int thMarks) {
-    
-   
+    StudentName=name;
+    StudentId=id;
+    DesignMarks=dgMarks;
+    ThesisMarks=thMarks;
 }
 
 /*
@@ -90,8 +113,7 @@ ArchitectureStudent::ArchitectureStudent(std::string name, std::string id,int dg
 */
 
 void ArchitectureStudent::CalculateMarks(){
-
-   
+    TotalMarks=((DesignMarks+ThesisMarks)/2); 
 }
 
 /*
@@ -99,14 +121,14 @@ void ArchitectureStudent::CalculateMarks(){
 */
 
 int ArchitectureStudent::GetDesignMarks(){
-   
+   return DesignMarks;
 }
 
 /*
     Method to return Thesis marks of the ArchitectureStudent
 */
-char ArchitectureStudent::GetThesisMarks(){
-  
+int ArchitectureStudent::GetThesisMarks(){
+    return ThesisMarks;
 }
 
 /*
@@ -114,5 +136,5 @@ char ArchitectureStudent::GetThesisMarks(){
 */
 
 int ArchitectureStudent::GetTotalMarks(){
-   
+   return TotalMarks;
 }

@@ -55,7 +55,7 @@ public:
 
     //Getter methods
     int GetPracticalMarks();
-    char GetTheoryMarks();
+    int GetTheoryMarks();
     int GetTotalMarks();
 
     void CalculateMarks();
@@ -84,7 +84,7 @@ public:
     ArchitectureStudent (std::string name, std::string id,int dgMarks, int thMarks);
     
     int GetDesignMarks();
-    char GetThesisMarks();
+    int GetThesisMarks();
     int GetTotalMarks();
 
     
