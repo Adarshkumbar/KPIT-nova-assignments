@@ -132,7 +132,7 @@ int FindLowestEfficiency(std::vector<data>& values){
     int Length = values.size();
 
     /*
-        Loop and find Efficiency key. If it exists, check if Efficiency is not 
+        Loop and find Efficiency key. If it exists, check if Efficiency is not
         less than current value of LowestEfficiency. Replace if a lower value is found
     */
 
