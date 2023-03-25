@@ -56,6 +56,4 @@ class calcTestSuite:public CxxTest::TestSuite
 			status=s1.isempty();
 			TS_ASSERT_EQUALS(status, false);
 		}
-
-		
 };
