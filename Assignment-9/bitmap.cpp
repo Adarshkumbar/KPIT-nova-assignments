@@ -9,6 +9,7 @@ Employee::Employee()
 	strcpy(name," ");
 	basicsalary=0;
 }
+
 Employee::Employee(int id, const char *n, double sal)
 {
 	empid=id;
