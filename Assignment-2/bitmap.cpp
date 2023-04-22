@@ -71,7 +71,6 @@ int Student::highestMarks()
 	}
 	return highest;
 }
-
 int Student::lowestMarks()
 {
 	int lowest;
